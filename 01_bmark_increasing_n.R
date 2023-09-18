@@ -1,18 +1,3 @@
-on.alice = T
-install = F
-
-if (on.alice & install) {
-  install.packages('/data1/signorellim1/tarballs/pencal_2.0.2.tar.gz', repos = NULL)
-  #install.packages('pencal', repos = "https://cloud.r-project.org")
-  install.packages('rbenchmark', repos = "https://cloud.r-project.org")
-}
-
-if (on.alice) setwd('/data1/signorellim1/06_pencal_benchmark')
-if (!on.alice) {
-  library(msigno)
-  set.cf()
-}
-
 library(pencal)
 library(rbenchmark)
 

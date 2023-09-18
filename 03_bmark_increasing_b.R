@@ -29,23 +29,18 @@ run_prc = function(df, n.boots, n.cores, verb = F) {
                      penalty = 'ridge', n.cores = n.cores, verbose = verb)
 }
 
-x5 = simulate_data(lmark = 2, n = 200, p = 5)
-x10 = simulate_data(lmark = 2, n = 200, p = 10)
-x20 = simulate_data(lmark = 2, n = 200, p = 20)
-x30 = simulate_data(lmark = 2, n = 200, p = 30)
-x40 = simulate_data(lmark = 2, n = 200, p = 40)
-x50 = simulate_data(lmark = 2, n = 200, p = 50)
+x200 = simulate_data(lmark = 2, n = 200, p = 10)
 
 nrepl = 10
 n.cores = 1
-time_exp2 = benchmark(
-  'n = 200, p = 5, b = 0, nc = 1' = run_prc(x5, 0, n.cores),
-  'n = 200, p = 10, b = 0, nc = 1' = run_prc(x10, 0, n.cores),
-  'n = 200, p = 20, b = 0, nc = 1' = run_prc(x20, 0, n.cores),
-  'n = 200, p = 30, b = 0, nc = 1' = run_prc(x30, 0, n.cores),
-  'n = 200, p = 40, b = 0, nc = 1' = run_prc(x40, 0, n.cores),
-  'n = 200, p = 50, b = 0, nc = 1' = run_prc(x50, 0, n.cores),
+time_exp3 = benchmark(
+  'n = 200, p = 10, b = 50, nc = 1' = run_prc(x200, 50, n.cores), 
+  'n = 200, p = 10, b = 100, nc = 1' = run_prc(x200, 100, n.cores), 
+  'n = 200, p = 10, b = 200, nc = 1' = run_prc(x200, 200, n.cores), 
+  'n = 200, p = 10, b = 300, nc = 1' = run_prc(x200, 300, n.cores), 
+  'n = 200, p = 10, b = 400, nc = 1' = run_prc(x200, 400, n.cores), 
+  'n = 200, p = 10, b = 500, nc = 1' = run_prc(x200, 500, n.cores), 
   replications = nrepl
 )
 
-save(time_exp2, nrepl, file = 'results/02_results.Rdata')
+save(time_exp3, nrepl, file = 'results/03_results.Rdata')
